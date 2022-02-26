@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+  {{{_sections.link-style}}}
+  <!-- Bootstrap CSS -->
+  <link href="/plugins/bootstrap-5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  {{{_sections.style}}}
+
+  <title>Hello, world!</title>
+</head>
+
+<body>
+
+  {{{body}}}
+
+  <script src="/plugins/bootstrap-5.1.3/js/bootstrap.bundle.min.js"></script>
+  {{{_sections.link-script}}}
+  <script>
+    toastr.options = {
+      "positionClass": "toast-bottom-right"
+    }
+  </script>
+  {{> toastr}}
+  {{{_sections.script}}}
+
+</body>
+
+</html>

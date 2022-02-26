@@ -1,0 +1,121 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Profile</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Info</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/admin/profile/update" method="post">
+                    <div class="form-group">
+                        <label for="inputUsername">Username</label>
+                        <input type="text" name="username" id="inputUsername" class="form-control" value="{{user.username}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" name="email" id="inputEmail" class="form-control" value="{{user.email}}">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" name="name" id="inputName" class="form-control" value="{{user.name}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputSurname">Surname</label>
+                                <input type="text" name="surname" id="inputSurname" class="form-control" value="{{user.surname}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <input type="submit" value="Update Info" class="btn btn-success">
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Profile Photo</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="d-flex justify-content-center">
+                            <div class="w-50" style="
+                                    height:200px;
+                                    background-image: url('{{user.avatar}}');
+                                    background-position: center; 
+                                    background-repeat: no-repeat; 
+                                    background-size: contain;
+                                ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Change Profile Photo</p>
+                        <form action="/admin/profile/update-image" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="avatar" id="avatar" required>
+                                    <label class="custom-file-label" for="avatar">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <input type="submit" value="Change" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{{#section "link-style"}}
+{{/section}}
+
+{{#section "link-script"}}
+    <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+{{/section}}
+
+{{#section "script"}}
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+{{/section}}

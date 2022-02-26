@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Starter</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+  {{{_sections.link-style}}}
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+  {{{_sections.style}}}
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    {{> admin/navbar}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {{> admin/sidebar}}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      {{{body}}}
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    {{> admin/control-sidebar}}
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    {{> admin/footer}}
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Toastr -->
+  <script src="/plugins/toastr/toastr.min.js"></script>
+  {{{_sections.link-script}}}
+  <!-- AdminLTE App -->
+  <script src="/admin/dist/js/adminlte.min.js"></script>
+
+  <script>
+    toastr.options = {
+      "positionClass": "toast-bottom-right"
+    }
+  </script>
+  {{> toastr}}
+  {{{_sections.script}}}
+
+</body>
+
+</html>

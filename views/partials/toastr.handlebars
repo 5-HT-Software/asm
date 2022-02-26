@@ -1,0 +1,15 @@
+{{#if flashMessages.error}}
+  <script>
+    toastr.error('{{flashMessages.error}}', 'Error!');
+  </script>
+{{/if}}
+{{#if flashMessages.success}}
+  <script>
+    toastr.success('{{flashMessages.success}}', 'Success');
+  </script>
+{{/if}}
+{{#if flashMessages.warning}}
+  <script>
+    toastr.warning('{{flashMessages.warning}}', 'Warning!');
+  </script>
+{{/if}}
