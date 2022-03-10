@@ -1,6 +1,6 @@
 module.exports = {
     User: require("./User"),
-    Token: require("./Token"),
+    Token: require("./token"),
     Pages: require("./Pages"),
     CalismaTablosu: require("./CalismaTablosu"),
     IndexSlider: require("./IndexSlider"),
