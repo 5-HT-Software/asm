@@ -2,11 +2,11 @@ const {graphql} = require("graphql")
 const schema = require("../../../graphql/schema")
 
 
-const {blogGetOneQuery, blogGetAllQuery, blogCreateQuery, blogUpdateQuery, blogDeleteQuery} = require("../../queries/blogQueries")
+const {blogGetOneQuery, blogGetAllQuery, blogCreateQuery, blogUpdateQuery, blogDeleteQuery, blogGetAllWoContentQuery} = require("../../queries/blogQueries")
 
 
 const blogsPage = async (req, res) => {
-    const result = await graphql(schema, blogGetAllQuery())
+    const result = await graphql(schema, blogGetAllWoContentQuery())
     if (!result.errors) {
         res.render("pages/admin/blog/blogs", {layout: "admin", blogs: result.data.blogGetAll})
     } else res.render("pages/admin/blog/blogs", {layout: "admin", flashMessages: {error: "Bir hata oluştu!"}})

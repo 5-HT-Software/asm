@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-body py-5">
                 <h2>{{blog.title}}</h2>
+                <div><span class="text-muted">{{dateTrConv blog.updatedAt}}</span></div>
                 <div><strong class="text-muted">Etiketler: </strong>{{#each blog.tags}}<a href="/faydali-bilgiler?tag={{this}}" class="text-reset text-decoration-none">{{this}}</a>{{#unless @last}}, {{/unless}}{{/each}}</div>
                 <div class="row">
                     <div class="col-md-8 py-4">

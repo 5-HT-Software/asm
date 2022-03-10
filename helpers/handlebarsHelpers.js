@@ -92,5 +92,16 @@ module.exports = {
       return Math.round(date) + " Ay önce"
     date /= 12
     return Math.round(date) + " Yıl önce"
+  },
+
+  dateTrConv: (d) => {
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }
+    let date = new Date(parseInt(d)).toLocaleString('tr-TR', options)
+    return date
   }
 }
+

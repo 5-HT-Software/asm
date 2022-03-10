@@ -26,6 +26,18 @@ const blogGetAllQuery = () => {
     return queryBuilder(query)
 }
 
+const blogGetAllWoContentQuery = () => {
+    const fields = ["_id", "title", "publish", "tags", "createdAt", "updatedAt"]
+    const query = {
+        query: {
+            blogGetAll: {
+                fields
+            }
+        }
+    }
+    return queryBuilder(query)
+}
+
 //args{name,content,tags}
 const blogCreateQuery = (args) => {
     const fields = ["_id", "title", "content", "publish", "tags", "createdAt", "updatedAt"]
@@ -102,4 +114,4 @@ const blogPageQuery = (args) => {
     return queryBuilder(query)
 }
 
-module.exports = {blogGetOneQuery, blogGetAllQuery, blogCreateQuery, blogUpdateQuery, blogDeleteQuery, blogsPageQuery, blogPageQuery}
+module.exports = {blogGetOneQuery, blogGetAllQuery, blogCreateQuery, blogUpdateQuery, blogDeleteQuery, blogsPageQuery, blogPageQuery, blogGetAllWoContentQuery}
