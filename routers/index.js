@@ -1,11 +1,5 @@
 const express = require("express")
 const router = express.Router()
-//*** graphql ***//
-const {
-    graphqlHTTP
-} = require("express-graphql")
-const schema = require("../graphql/schema")
-
 const IndexController = require("../controllers/index")
 const {siteInfo} = require("../controllers/middlewares")
 
@@ -25,22 +19,6 @@ router.route("/faydali-bilgiler/:name/:_id").get(IndexController.faydaliBilgiPag
 router.route("/faydali-bilgiler").get(IndexController.faydaliBilgilerPage)
 router.route("/iletisim").get(IndexController.iletisimPage)
 
-
-
-
-
-
-
-
 //setting posts
 
-
-
-router.use(
-    "/graphql",
-    graphqlHTTP({
-        schema,
-        graphiql: true
-    })
-)
 module.exports = router

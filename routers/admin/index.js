@@ -1,5 +1,10 @@
 const express = require("express")
 const router = express.Router()
+//*** graphql ***//
+const {
+    graphqlHTTP
+} = require("express-graphql")
+const schema = require("../../graphql/schema")
 
 const {sessionCheck} = require("../../helpers/permission")
 const ProfileController = require("../../controllers/admin/profile")
@@ -54,5 +59,15 @@ router.route("/iletisim/updateOther/:_id").post(IletisimController.iletisimUpdat
 router.route("/iletisim/deleteOther/:_id").get(IletisimController.iletisimDeleteOther)
 
 router.route("/site/update").post(SettingsController.siteUpdate)
+
+
+
+router.use(
+    "/graphql",
+    graphqlHTTP({
+        schema,
+        graphiql: true
+    })
+)
 
 module.exports = router
