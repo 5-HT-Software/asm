@@ -1,0 +1,36 @@
+<div class="container">
+    <div id="mapArea" class="my-3">
+        {{{iletisim.map}}}
+    </div>
+    <div class="card mb-3">
+        <div class="card-body py-5">
+            <h4>Bilmemne ASM</h4>
+            <div class="p-3">
+                <span class="d-block"><strong class="text-muted">Adres :</strong> {{iletisim.mainAddress}}</span>
+                <span class="d-block"><strong class="text-muted">Telefon :</strong> {{iletisim.mainPhone}}</span>
+            </div>
+            {{#if iletisim.others}}
+                <hr class="my-4">
+                <h4>Diğer İletişim Bilgileri</h4>
+                {{#each iletisim.others}}
+                    <div class="p-3">
+                        <h5>{{name}} :</h5>
+                        <div class="px-3">
+                            <span class="d-block"><strong class="text-muted">Adres :</strong> {{address}}</span>
+                            <span class="d-block"><strong class="text-muted">Telefon :</strong> {{phone}}</span>
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+{{#section "link-style"}}
+    <style>
+        #mapArea iframe {
+            width: 100% !important;
+            height: 450px !important;
+        }
+    </style>
+{{/section}}

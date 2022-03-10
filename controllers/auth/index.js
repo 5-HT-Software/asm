@@ -23,7 +23,7 @@ const recoverPasswordPage = async (req, res) => {
         res.render("pages/auth/recoverPassword", {layout: "login", token: token.data.token})
     }
     else {
-        req.flash("error", "Your token is missing")
+        req.flash("error", "Link geçerli değil.")
         res.redirect("/login")
     }
 }
@@ -35,7 +35,7 @@ const forgotPassword = async (req, res) => {
         if (userInfo) {
             let token = await graphql(schema, tokenCreateQuery({target_id: userInfo._id, type: "newPassword"}))
             sendNewPasswordMail(token.data.tokenCreate.token, userInfo.email)
-            req.flash("success", "Your can check your email")
+            req.flash("success", "Yeni parola linki e-mail adresinize gönderilmiştir.")
             res.redirect("/login")
         }
         else {

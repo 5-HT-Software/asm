@@ -1,0 +1,41 @@
+{{#if auth}}
+    <nav class="navbar navbar-light bg-danger ">
+        <div class="container d-block">
+            <div class="navbar-brand text-center text-align-center py-0">
+                <a href="/admin" class="text-white text-decoration-none me-4">Admin Paneli</a>
+                <a href="/logout" class="text-white text-decoration-none ms-4">Çıkış Yap</a>
+
+            </div>
+        </div>
+    </nav>
+{{/if}}
+<nav class="navbar navbar-light bg-light">
+    <div class="container d-block">
+        <div class="navbar-brand text-center text-align-center">
+            <img src="/dist/images/saglikbakanligi_logo.png" alt="" width="120" class="d-inline-block me-sm-3">
+            <a href="/" class="text-muted text-decoration-none">
+                <span class="ms-sm-3 display-6" style="font-weight: 400">
+                    {{uppercase siteInfo.site_name}}
+                </span>
+            </a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" style="margin-top:-1px">
+    <div class="container-fluid text-center justify-content-center">
+        <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            Menü
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/kadromuz">KADROMUZ</a>
+                <a class="nav-link" href="/hizmetlerimiz">HİZMETLERİMİZ</a>
+                <a class="nav-link" href="/calisma-tablosu">ÇALIŞMA TABLOSU</a>
+                <a class="nav-link" href="/hizmet-standartlari-tablosu">HİZMET STANDARTLARI TABLOSU</a>
+                <a class="nav-link" href="/faydali-bilgiler">FAYDALI BİLGİLER</a>
+                <a class="nav-link" href="/iletisim">İLETİŞİM</a>
+                <a class="nav-link" href="https://covid19.saglik.gov.tr/">COVİD-19</a>
+            </div>
+        </div>
+    </div>
+</nav>

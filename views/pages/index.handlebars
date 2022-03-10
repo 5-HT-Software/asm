@@ -1,1 +1,48 @@
-<h1>Hello, world!</h1>
+<div class="py-5">
+
+    {{#unless indexSliderError}}
+        <div class="container">
+            <div id="mainSliderControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {{#each indexSliders}}
+                        <div class="carousel-item {{#if @first}}active{{/if}}" style='background-image: url("{{url}}"); height: 500px; width:100%; background-position: center; background-repeat: no-repeat; background-size: cover; '>
+                        </div>
+                    {{/each}}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#mainSliderControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#mainSliderControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    {{/unless}}
+
+    <div class="py-4 mt-5 mb-2 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 d-flex align-items-start">
+                    <i class="fas fa-heartbeat me-3 mt-2" style="font-size:2.5em"></i>
+                    <div data-post="/admin/setPageItem/index/alan1" class="px-3 editor">
+                        {{{pageItems.alan1}}}
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-start">
+                    <i class="fas fa-user-md me-3 mt-2" style="font-size:2em"></i>
+                    <div data-post="/admin/setPageItem/index/alan2" class="px-3 editor">
+                        {{{pageItems.alan2}}}
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex align-items-start">
+                    <i class="fas fa-syringe me-3 mt-2" style="font-size:2em"></i>
+                    <div data-post="/admin/setPageItem/index/alan3" class="px-3 editor">
+                        {{{pageItems.alan3}}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

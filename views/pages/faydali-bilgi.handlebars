@@ -1,0 +1,35 @@
+<div class="py-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body py-5">
+                <h2>{{blog.title}}</h2>
+                <div><strong class="text-muted">Etiketler: </strong>{{#each blog.tags}}<a href="/faydali-bilgiler?tag={{this}}" class="text-reset text-decoration-none">{{this}}</a>{{#unless @last}}, {{/unless}}{{/each}}</div>
+                <div class="row">
+                    <div class="col-md-8 py-4">
+                        <hr>
+                        {{{blog.content}}}
+                        {{#if randomBlog}}
+                            <hr>
+                            <div>
+                                <h5 class="text-muted">Bu yazıları okumuş muydunuz?</h5>
+                                {{#each randomBlog}}
+                                    <div class="my-2">
+                                        <a class="text-reset text-decoration-none" href="/faydali-bilgiler/{{makeLink title}}/{{_id}}"><strong>{{title}}</strong></a>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div class="col-md-4 py-4">
+                        <div class="w-50 m-auto py-4 px-3 position-sticky" style="top:50px">
+                            <h6>Etiketler</h6>
+                            {{#each allTags}}
+                                <div class="py-1"><a class="text-muted text-decoration-none" href="/faydali-bilgiler?tag={{tagName}}">{{tagName}} ({{count}})</a></div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

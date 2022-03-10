@@ -26,6 +26,10 @@ module.exports = {
     }
   },
 
+  contentSummary: (content, options) => {
+    return content.replace(/<img .*?>/g, "").substring(0, 300) + "...";
+  },
+
   checkNull: (v, options) => {
     return v == null ? options.fn(this) : options.inverse(this)
   },
@@ -48,6 +52,12 @@ module.exports = {
   },
   inc: function (number) {
     return parseInt(number) + 1
+  },
+
+  breakLineTextarea: function (string) {
+    console.log(string.replace(/\\n/g, ""))
+    let json = JSON.stringify(string).replace(/\\n/g, "")
+    return JSON.parse(json)
   },
   durationConv: (duration) => {
     duration = parseInt(duration)

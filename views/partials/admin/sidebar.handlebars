@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/admin" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">{{siteInfo.site_name}}</span>
+        <br>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -15,61 +15,90 @@
                 <a href="/admin/profile" class="d-block">{{auth.username}}</a>
             </div>
         </div>
-        <!-- SidebarSearch Form -->
-        <!-- 
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        -->
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                {{#ifCond auth.authority "==" "superAdmin"}}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Kullanıcılar
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/admin/users" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kullanıcı Listesi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admin/user/create" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kullanıcı Ekle</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {{/ifCond}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Users
+                            Faydalı Bilgiler
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/users" class="nav-link active">
+                            <a href="/admin/blogs" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>All Users</p>
+                                <p>Tüm Faydalı Bilgiler</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/user/create" class="nav-link">
+                            <a href="/admin/blog/create" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add User</p>
+                                <p>Faydalı Bilgi Ekle</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="/admin/indexSlider" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>Anasayfa Kayan Resimler</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/calisma-tablosu" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>Çalışma Tablosu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/hizmet-standartlari-tablosu" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>Hizmet Standartları Tablosu</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/iletisim" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>İletişim</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/admin/settings" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Settings
-                        </p>
+                        <p>Ayarlar</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>
-                            Logout
-                        </p>
+                        <p>Çıkış Yap</p>
                     </a>
                 </li>
             </ul>

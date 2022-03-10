@@ -18,8 +18,6 @@ const allHelpers = {
 }
 require("dotenv").config()
 
-require("./folderCheck")
-
 const {
     connectDB
 } = require("./db")
@@ -28,8 +26,6 @@ const clientPromise = connectDB()
 
 var app = express()
 const server = http.createServer(app);
-//TODO Comment sistemi
-//TODO Courseinfo sayfası
 
 // Basic Security - Helmet
 app.use(
@@ -37,7 +33,6 @@ app.use(
         contentSecurityPolicy: false
     })
 )
-
 // Bodyparser
 app.use(express.json({
     limit: "50mb"
@@ -117,6 +112,6 @@ app.use((err, req, res, next) => {
     console.error(err)
 })
 
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+server.listen(3200, () => {
+    console.log('listening on *:3200');
 });

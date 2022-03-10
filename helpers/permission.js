@@ -3,4 +3,9 @@ const sessionCheck = (req, res, next) => {
     else res.redirect("/login")
 }
 
-module.exports = {sessionCheck}
+const notAuthCheck = (req, res, next) => {
+    if (!req.isAuthenticated()) next()
+    else res.redirect("/admin")
+}
+
+module.exports = {sessionCheck, notAuthCheck}

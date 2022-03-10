@@ -1,0 +1,95 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Tüm Faydalı Bilgiler</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Tüm Faydalı Bilgiler</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <a href="/admin/blog/create" class="btn btn-primary">
+                        Faydalı Bilgi Ekle
+                    </a>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                {{#if blogs}}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Başlık</th>
+                                <th>Etiketler</th>
+                                <th>Tarih</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each blogs}}
+                                <tr>
+                                    <td>{{title}}</td>
+                                    <td>{{#each tags}}{{this}}{{#unless @last}},{{/unless}}{{/each}}</td>
+                                    <td>{{updatedAt}}</td>
+                                    <td class="d-flex justify-content-center align-items-center">
+                                        <div class="form-check mr-2">
+                                            <input class="form-check-input" type="checkbox" value="{{_id}}" id="{{_id}}check" {{#if publish}}checked{{/if}} onclick="blogPublish(this)">
+                                            <label class="form-check-label user-select-none" for="{{_id}}check">
+                                                Yayınla
+                                            </label>
+                                        </div>
+                                        <a href="/admin/blog/update/{{_id}}" class="btn btn-primary mr-2">Düzenle</a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#blogDeleteModal{{_id}}">Sil</a>
+
+                                    </td>
+                                </tr>
+                                {{> admin/modal/blog/blogDeleteModal this}}
+                            {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <h5>Faydalı bilgi bulunmamaktadır.</h5>
+                {{/if}}
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{{#section "script"}}
+    <script>
+        const blogPublish = (el) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open("POST", `/admin/blog/update/${el.value}`, true)
+            xhr.responseType = "json"
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.onload = () => {
+                if (xhr.response.error) {
+                    el.checked = !el.checked
+                    toastr.error(xhr.response.error, 'Hata!')
+                }
+                else {
+                    let message = "Faydalı bilgi başarıyla yayından kaldırıldı."
+                    if (el.checked) message = "Faydalı bilgi başarıyla yayına alındı."
+                    toastr.success(message, 'Başarılı')
+                }
+            }
+            xhr.send(JSON.stringify({publish: el.checked}))
+        }
+    </script>
+{{/section}}

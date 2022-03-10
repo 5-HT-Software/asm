@@ -1,0 +1,109 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Faydalı Bilgi Ekle</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin">Anasayfa</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/blogs">Tüm Faydalı Bilgiler</a></li>
+                    <li class="breadcrumb-item active">Faydalı Bilgi Ekle</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mb-3">
+                    <label for="title">Blog Başlığı</label>
+                    <input type="text" name="title" id="title" class="form-control">
+                </div>
+                <div id="editor" class="mb-3" style="min-height: 300px;">
+
+                </div>
+                <div class="form-group mb-3">
+                    <label for="tags">Etiketler</label>
+                    <input type="text" name="tags" id="tags" class="form-control" placeholder="tag1, tag2, tag3, ...">
+                    <small>Etiketleri "," ile ayırın</small>
+                </div>
+                <button type="button" class="btn btn-primary" id="create-blog-button">Kaydet</button>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+
+
+
+{{#section "link-style"}}
+    <link rel="stylesheet" href="/plugins/quill/quill.snow.css">
+{{/section}}
+
+{{#section "link-script"}}
+    <script src="/plugins/quill/quill.js"></script>
+    <script src="/plugins/quill/image-resize.min.js"></script>
+{{/section}}
+
+{{#section "script"}}
+    <script>
+        var toolbarOptions = [
+            [{'header': [1, 2, 3, 4, 5, 6, false]}],
+            ['bold', 'italic', 'underline', 'strike'],
+
+            [
+                'clean',
+                {'color': ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466"]},
+                {'background': ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466"]}
+            ],
+            [{'header': 1}, {'header': 2}],
+            [{'list': 'ordered'}, {'list': 'bullet'}],
+            [{'script': 'sub'}, {'script': 'super'}],
+            [{'indent': '-1'}, {'indent': '+1'}],
+            [{'size': ['small', false, 'large', 'huge']}],
+            [{align: ''}, {align: 'center'}, {align: 'right'}, {align: 'justify'}],
+            ['link', "image", "video"],
+        ];
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                imageResize: {
+                    displaySize: true
+                },
+                toolbar: toolbarOptions,
+            },
+        });
+
+        let createBlogButton = document.querySelector("#create-blog-button")
+        createBlogButton.onclick = () => {
+            let tags = document.querySelector("#tags").value.split(",")
+            tags = tags.map(p => p.trim())
+            const xhr = new XMLHttpRequest()
+            xhr.open("POST", "/admin/blog/create", true)
+            xhr.responseType = "json"
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onload = () => {
+                if (!xhr.response.error) {
+                    window.location.reload()
+                }
+                else {
+                    toastr.error(xhr.response.error, 'Hata!')
+                }
+            }
+            xhr.send(JSON.stringify({
+                title: document.querySelector("#title").value,
+                content: quill.root.innerHTML,
+                tags
+            }))
+        }
+    </script>
+{{/section}}

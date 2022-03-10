@@ -34,7 +34,6 @@ const userUpdatePage = async (req, res) => {
     }
 }
 
-
 const userCreatePage = async (req, res) => {
     res.render("pages/admin/user/userCreate", {layout: "admin"})
 }
@@ -45,7 +44,7 @@ const userCreate = async (req, res) => {
         let newUser = result.data.userCreate
         let token = await graphql(schema, tokenCreateQuery({target_id: newUser._id, type: "newPassword"}))
         sendNewPasswordMail(token.data.tokenCreate.token, newUser.email)
-        req.flash("success", "User added successfully.")
+        req.flash("success", "Kullanıcı başarıyla eklendi.")
         res.redirect("/admin/users")
     }
     else {
@@ -60,7 +59,7 @@ const userUpdate = async (req, res) => {
         data._id = req.params.userId
         const result = await graphql(schema, userUpdateQuery(data))
         if (!result.errors) {
-            req.flash("success", "User updated successfully.")
+            req.flash("success", "Kullanıcı bilgileri başarıyla güncellendi.")
             res.redirect("/admin/user/" + req.params.userId + "/update")
         }
         else {
@@ -73,16 +72,14 @@ const userUpdate = async (req, res) => {
         req.flash("error", "Url error")
         res.redirect("/admin/users")
     }
-
 }
 
 const userDelete = async (req, res) => {
     console.log("req.params.userId", req.params.userId)
-
     if (req.params.userId) {
         const result = await graphql(schema, userDeleteQuery({_id: req.params.userId}))
         if (!result.errors) {
-            req.flash("success", "User updated successfully.")
+            req.flash("success", "Kullanıcı başarıyla silindi.")
         }
         else {
             console.log(result.errors)
@@ -92,7 +89,6 @@ const userDelete = async (req, res) => {
     else {
         req.flash("error", "Url error")
     }
-
     res.redirect("/admin/users")
 }
 

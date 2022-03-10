@@ -16,7 +16,4 @@ router.route("/user/create").post(UserController.userCreate)
 router.route("/user/:userId/delete").post(UserController.userDelete)
 
 
-
-
-
 module.exports = router

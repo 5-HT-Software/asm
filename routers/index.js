@@ -5,18 +5,32 @@ const {
     graphqlHTTP
 } = require("express-graphql")
 const schema = require("../graphql/schema")
-const {
-    graphql
-} = require("graphql")
+
+const IndexController = require("../controllers/index")
+const {siteInfo} = require("../controllers/middlewares")
+
+
 //*** graphql ***//
 
 
-router.use("/", require("./auth"))
+router.use(siteInfo)
 
-router.route("/").get((req, res) => {
-    req.flash("success", "Başarıyla toster çalıştı.");
-    res.render("pages/index")
-})
+router.use("/", require("./auth"))
+router.route("/").get(IndexController.indexPage)
+router.route("/kadromuz").get(IndexController.kadromuzPage)
+router.route("/hizmetlerimiz").get(IndexController.hizmetlerimizPage)
+router.route("/calisma-tablosu").get(IndexController.calismaTablosuPage)
+router.route("/hizmet-standartlari-tablosu").get(IndexController.hizmetStandartlariTablosuPage)
+router.route("/faydali-bilgiler/:name/:_id").get(IndexController.faydaliBilgiPage)
+router.route("/faydali-bilgiler").get(IndexController.faydaliBilgilerPage)
+router.route("/iletisim").get(IndexController.iletisimPage)
+
+
+
+
+
+
+
 
 //setting posts
 

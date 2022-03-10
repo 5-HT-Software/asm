@@ -1,7 +1,7 @@
 const {graphql} = require("graphql")
 const schema = require("../../graphql/schema")
 
-const {getOneUserByIdQuery} = require("../../controllers/queries/userqueries")
+const {getOneUserByIdQuery} = require("../queries/userqueries")
 const {userUpdateQuery} = require("../queries/userqueries")
 const uploadHelper = require("../../helpers/uploadFile")
 const formidable = require("formidable")
@@ -23,7 +23,7 @@ const profileUpdate = async (req, res) => {
     data._id = req.user._id
     const result = await graphql(schema, userUpdateQuery(data))
     if (!result.errors) {
-        req.flash("success", "User updated successfully.")
+        req.flash("success", "Bilgiler başarıyla güncellendi.")
     }
     else {
         console.log(result.errors)
@@ -48,7 +48,7 @@ const profileUpdateImage = async (req, res) => {
         if (!catchError) {
             const result = await graphql(schema, userUpdateQuery({_id: req.user._id, avatar}))
             if (!result.errors) {
-                req.flash("success", "Profile photo updated successfully.")
+                req.flash("success", "Profil resmi başarıyla güncellendi.")
             }
             else {
                 console.log(result.errors)

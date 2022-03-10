@@ -1,0 +1,31 @@
+<div class="py-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body py-5">
+                <h5 class="card-title">HİZMET STANDARTLARI TABLOSU</h5>
+                <div class="p-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SIRA</th>
+                                <th scope="col">HİZMETİN ADI</th>
+                                <th scope="col">BAŞVURUDA İSTENEN BELGELER</th>
+                                <th scope="col">HİZMETİN TAMAMLANMA SÜRESİ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each hizmetStandartlari}}
+                                <tr>
+                                    <th scope="row">{{inc @key}}</th>
+                                    <td>{{name}}</td>
+                                    <td style="white-space: pre-line">{{documents}}</td>
+                                    <td>{{duration}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
